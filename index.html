@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+
+		<!--link rel="stylesheet" href="dist/theme/black.css"-->
+        <link rel="stylesheet" href="dist/theme/white.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+
+
+
+		<div class="reveal">
+			<div class="slides">
+
+                <section  data-background-color="#00A1E3">
+
+                    <h2 style="text-transform: none; width:80%; padding-left: 100px; padding-top: 100px;">Extension of a RISC-V Core with Custom Matrix Multiplication Instructions</h2>
+
+                    <!---->
+                    <div style="background: none no-repeat scroll 0 0 #fff;
+                        position: absolute;
+                        right: 0%;
+                        bottom: -80%;
+                        width: 220px;
+                        border-radius: 15px 0 0 15px;">
+                        <img src="examples\assets\logo-th-ab-logo-only.svg" />
+                    </div>
+
+                    <div style="position: absolute; bottom: -100%;">
+                        Wolfgang Bischoff, 2228538
+                    </div>
+
+                </section>
+
+
+                <!-- define several slides using markdown only
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Slide 1
+                        A paragraph with some text and a [link](https://hakim.se).
+                        ---
+                        ## Slide 2
+                        ---
+                        ## Slide 3
+                    </textarea>
+                </section>
+                <section>
+                    <section>Slide 0.1</section>
+                    <section>Slide 0.2</section>
+                </section>
+                -->
+
+                <style type="text/css">
+                    .container {
+                        margin: auto;
+                        padding: 10px;
+                    }
+
+                    .left {
+                        width: 35%;
+                        float: left;
+                    }
+
+                    .right {
+                        width: 65%;
+                        float: right;
+                    }
+
+                    .left-50 {
+                        width: 50%;
+                        float: left;
+                    }
+
+                    .right-50 {
+                        width: 50%;
+                        float: right;
+                    }
+
+
+                    li {
+                        margin: 20px 0;
+                    }
+                </style>
+
+
+				<section>
+                    <div style="padding-top:60px; padding-left:60px">
+                        <h5 style="text-align:left; text-transform: none; color:#00A1E3">Vortragsorganisation</h5>
+
+                            <ol style="padding-top:60px;">
+                                <li>Beschreibung der Aufgabenstellung und Motivation</li>
+                                <li>Matrixmultiplikation, Grundlagen und Herangehensweise</li>
+                                <li>Die NEORV32 CPU als Ziel der Anpassungen</li>
+                                <li>Beschreibung der Anpassungen</li>
+                                <li>Auswertung und Ausblick</li>
+                            </ol>
+                    </div>
+                </section>
+
+                <section data-background-color="#00A1E3">
+
+                    <h4 style="text-transform: none; width:80%; padding-left: 100px; padding-top: 100px;">
+                        Beschreibung der Aufgabenstellung und Motivation
+                    </h4>
+
+                    <div style="background: none no-repeat scroll 0 0 #fff;
+                        position: absolute;
+                        right: 0%;
+                        bottom: -280%;
+                        width: 220px;
+                        border-radius: 15px 0 0 15px;">
+                        <img src="examples\assets\logo-th-ab-logo-only.svg" />
+                    </div>
+
+                </section>
+
+                <section>
+                    <div style="padding-top:60px; padding-left:60px">
+                        <h5 style="text-align:left; text-transform: none; color:#00A1E3">RISC-V - Zeitliche Einordnung</h5>
+                    </div>
+                    <div>
+                        <img style="width:80%" src="examples\assets\history.svg" />
+                    </div>
+                </section>
+
+
+                <section>
+                    <div style="padding-top:60px; padding-left:60px">
+                        <div class="container">
+                            <h5 style="text-align:left; text-transform: none; color:#00A1E3">3D Transformationen</h5>
+                            <div class="left" style="padding-top: 20px;">
+                                <small>
+                                    <ul>
+                                        <li>Rotation, Translation, Skalierung und Projektion von 3D auf 2D sind Matrixberechnungen</li>
+                                        <li>Jedes Objekt wird mehrmals transformiert</li>
+                                        <li>4K oder 8K Auflösung, 60 Hz bis 200 Hz oder mehr</li>
+                                    </ul>
+                                </small>
+                            </div>
+                            <div class="right">
+                                <figure>
+                                    <img style="width:70%" src="examples\assets\3dTransformsDeVriew.png" />
+                                    <figcaption style="font-size: 0.5em !important;">Abb. 1 – Vektor-Matrix Multiplikation [1]</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div style="padding-top:60px; padding-left:60px">
+                        <div class="container">
+                            <div class="left" style="padding-top: 20px;">
+                                <h5 style="text-align:left; text-transform: none; color:#00A1E3">Neuronale Netze (1/2)</h5>
+                                <small>
+                                    <ul>
+                                        <li>LLMs sind Neuronale Netze</li>
+                                        <li>Eingaben x</li>
+                                        <li>Gewichte w</li>
+                                        <li>Berechne Skalarprodukt</li>
+                                        <li>Aktivierungsfunktion erzeugt Ausgabe y</li>
+                                    </ul>
+                                </small>
+                            </div>
+                            <div class="right" style="padding-top: 0px;">
+                                 <figure>
+                                    <img style="width:70%" src="examples\assets\LLM_1.png" />
+                                    <figcaption style="font-size: 0.5em !important;">Abb. ? – Neuronales Netz [2]</figcaption>
+                                </figure>
+                            </div>
+                            <figure>
+                                <img style="width:70%" src="examples\assets\LLM_2.png" />
+                                <figcaption style="font-size: 0.5em !important;">Abb. ? – Mehr als eine Ausgabe [2]</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </section>
+
+                <section data-background-color="#FFFFFF">
+                    <div style="padding-top:60px; padding-left:60px">
+                        <h5 style="text-align:left; text-transform: none; color:#00A1E3">Folientitel</h5>
+
+                        <div style="padding-top: 50px;">
+                                <figure>
+                                <img style="width:70%" src="examples\assets\LLM_3.png" />
+                                <figcaption style="font-size: 0.5em !important;">Abb. ? – Mehr als eine Ausgabe [2]</figcaption>
+                            </figure>
+                        </div>
+
+                        <div style="padding-top: 0px;">
+                                <figure>
+                                <img style="width:70%" src="examples\assets\LLM_4.png" />
+                                <figcaption style="font-size: 0.5em !important;">Abb. ? – Mehr als eine Eingabe [2]</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div style="padding-top:60px; padding-left:60px">
+                        <div class="container">
+                            <h5 style="text-align:left; text-transform: none; color:#00A1E3">Vorgehen nach mathematischer Vorschrift (1)</h5>
+                            <div class="left" style="padding-top: 20px;">
+                                <small>
+                                    <div style="text-align:left; padding-top: 20px;">
+                                        Wird für jede Zelle der Ergebnis-Matrix ausgeführt.
+                                    </div>
+                                    <div>
+                                        <ul>
+                                            <li>Zeile der ersten Matrix</li>
+                                            <li>Spalte der zweiten Matrix</li>
+                                            <li>Skalarprodukt dieser Vektoren</li>
+                                        </ul>
+                                    </div>
+
+                                    <div style="text-align:left; padding-top: 20px;">
+                                        Nachteile:
+                                    </div>
+                                    <div>
+                                        <ul>
+                                            <li>Verursacht viele Load- Store-Schritte</li>
+                                            <li>Mangelnde Cache-Lokalität</li>
+                                            <li>Performance schlecht</li>
+                                        </ul>
+                                    </div>
+                                </small>
+                            </div>
+                            <div class="right" style="padding-top: 20px;">
+                                 <figure>
+                                    <img style="width:70%" src="examples\assets\Matrixmultiplikation_Mathematical.png" />
+                                    <figcaption style="font-size: 0.5em !important;">Abb. 2 – Vorschrift Matrixmultiplikation</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div style="padding-top:60px; padding-left:60px">
+                        <div class="container">
+                            <h5 style="text-align:left; text-transform: none; color:#00A1E3">Ansatz zur Verbesserung: Blockbildung und dyadisches Produkt</h5>
+                            <div class="left" style="padding-top: 50px;">
+                                <figure>
+                                    <img style="width:70%" src="examples\assets\Matrix_Tiling.png" />
+                                    <figcaption style="font-size: 0.5em !important;">Abb. 3 – Aufteilung in Blöcke</figcaption>
+                                </figure>
+                            </div>
+                            <div class="right" style="padding-top: 50px;">
+                                 <small>
+                                    <ul style="width:70%;">
+                                        <li>Mathe-Bibliotheken sind Hardware-Software-Co-Designs.</li>
+                                        <li>Matrizen werden neu in den Speicher ‘gepackt’ um cachefreundlich zu sein.</li>
+                                        <li>Einzelne Blöcke werden mit dem Outer-Product berechnet.</li>
+                                        <li>Berechnung der Blöcke erfolgt in einem sogenannten “Kernel”. Dort werden Instruktionen mit Hardware-Beschleunigung ausgeführt.</li>
+                                        <li>RISC-V Bezeichnung: Strip-Mining</li>
+                                    </ul>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section data-background-color="#FFFFFF">
+                    <div style="padding-top:60px; padding-left:60px">
+                        <h5 style="text-align:left; text-transform: none; color:#00A1E3">Multiply Accumulate (MAC) Array</h5>
+                        <figure>
+                            <img style="width:40%" src="examples\assets\MAC_MatrixAccumulator.png" />
+                            <figcaption style="font-size: 0.5em !important;">Abb. 4 – Multiply Accumulate (MAC) Array [3]</figcaption>
+                        </figure>
+                    </div>
+                </section>
+
+                <section data-background-color="#FFFFFF">
+                    <div style="padding-top:60px; padding-left:60px">
+
+                        <div class="container">
+                            <h5 style="text-align:left; text-transform: none; color:#00A1E3">SISD vs. SIMD</h5>
+                            <div class="left-50" style="padding-top: 20px;">
+                                <figure>
+                                    <img style="width:100%" src="examples\assets\SISD.gif" />
+                                    <figcaption style="font-size: 0.5em !important;">Abb. ? – SISD</figcaption>
+                                </figure>
+                            </div>
+                            <div class="right-50" style="padding-top: 20px;">
+                                <figure>
+                                    <img style="width:100%" src="examples\assets\SIMD.gif" />
+                                    <figcaption style="font-size: 0.5em !important;">Abb. ? – SIMD</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+				<section data-background-color="#000000">
+                    <div style="padding-top:60px; padding-left:60px">
+                        <h5 style="position:absolute; text-align:left; text-transform: none; color:#00A1E3">Matrixmultiplikation mit dyadischem Produkt</h2>
+                        <img style="width:75%; padding-left: 200px;" src="examples\assets\outer_product.gif" />
+                    </div>
+                </section>
+
+
+                <section data-background-color="#00A1E3">
+                    <div style="display: table; height: 699px; overflow: hidden;">
+                        <div style="display: table-cell; vertical-align: middle;">
+                            <div>
+                            <p style="font-size: 2.5em !important;">Vielen Dank für die Aufmerksamkeit.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section data-background-color="#FFFFFF">
+                    <style type="text/css">
+                        .source-item {
+                            font-size: 0.5em !important;
+                            text-align:left;
+                        }
+                    </style>
+                    <div style="padding-top:60px; padding-left:60px">
+                        <h5 style="text-align:left; text-transform: none; color:#00A1E3">Quellenverzeichnis</h2>
+                        <div class="source-item">[1] Learn OpenGL Graphics Programming – Joey de Vries, 2020, Kendall&Welling, ISBN 978-90-90-33256-7</div>
+                        <div class="source-item">[2] https://www.gilesthomas.com/2025/02/basic-neural-network-matrix-maths-part-1 (Zugriff: 18.01.2026)</div>
+                        <div class="source-item">[3] https://riscv.atlassian.net/wiki/download/attachments/663781400/DesignConsiderationsForVME.pdf?api=v2  (Zugriff: 09.02.2026)</div>
+
+                        <div class="source-item">[3] https://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&No=502</div>
+                        <div class="source-item">[4] Digital Design and Computer Architecture, RISC-V Edition, Harris S., Harris D., Elsevier Science, 2021</div>
+                        <div class="source-item">[5] https://digilent.com/shop/arty-s7-spartan-7-fpga-development-board/</div>
+                        <div class="source-item">[6] https://www.digikey.de/de/products/detail/lattice-semiconductor-corporation/ICE40HX1K-STICK-EVN/4289604</div>
+                        <div class="source-item">[7] https://wiki.sipeed.com/hardware/en/tang/Tang-Nano-9K/Nano-9K.html</div>
+                        <div class="source-item">[8] The RISC-V Instruction Set Manual Volume I, Version 20250508</div>
+                        <div class="source-item">[9] The RISC-V Debug Specification, Tim Newsome, Paul Donahue, 2025-02-21</div>
+                        <div class="source-item">[10] https://riscv.org/about/</div>
+                        <div class="source-item">[11] https://de.wikipedia.org/wiki/Multiplexer#/media/Datei:Mux-Aufbau_DIN40900.svg</div>
+                    </div>
+                </section>
+
+
+
+                <!-- Einzeilige Folie
+                <section data-background-color="#FFFFFF">
+                    <div style="padding-top:60px; padding-left:60px">
+                        <h5 style="text-align:left; text-transform: none; color:#00A1E3">Folientitel</h2>
+                    </div>
+                </section>
+                -->
+
+                <!-- Zweizeilige Folie
+                <section>
+                    <div style="padding-top:60px; padding-left:60px">
+                        <div class="container">
+                            <h5 style="text-align:left; text-transform: none; color:#00A1E3">Folientitel</h2>
+                            <div class="left" style="padding-top: 20px;">
+                                <small>
+                                    <ul>
+                                        <li>Punkt A</li>
+                                        <li>Punkt B</li>
+                                        <li>Punkt C</li>
+                                    </ul>
+                                </small>
+                            </div>
+                            <div class="right" style="padding-top: 20px;">
+                                 <small>
+                                    <ul>
+                                        <li>Punkt A</li>
+                                        <li>Punkt B</li>
+                                        <li>Punkt C</li>
+                                    </ul>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                -->
+
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+
+                disableLayout: true,
+
+                // The "normal" size of the presentation, aspect ratio will
+                // be preserved when the presentation is scaled to fit different
+                // resolutions. Can be specified using percentage units.
+                width: 960,
+                height: 700,
+
+                // Factor of the display size that should remain empty around
+                // the content
+                margin: 0.04,
+
+                // Bounds for smallest/largest possible scale to apply to content
+                minScale: 0.2,
+                maxScale: 2.0,
+
+				hash: true,
+				showHiddenSlides: true,
+                progress: true,
+
+				slideNumber: 'c/t',
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
