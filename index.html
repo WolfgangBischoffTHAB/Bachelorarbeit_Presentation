@@ -13,7 +13,8 @@
         <link rel="stylesheet" href="dist/theme/white.css">
 
 		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<!-- <link rel="stylesheet" href="plugin/highlight/monokai.css"> -->
+        <!-- <link rel="stylesheet" href="plugin/highlight/nnfx-light.css"> -->
 	</head>
 	<body>
 
@@ -83,6 +84,24 @@
 
                     .right-50 {
                         width: 50%;
+                        float: right;
+                    }
+
+
+
+                    .left-small {
+                        width: 25%;
+                        float: left;
+                    }
+
+                    .right-large {
+                        width: 75%;
+                        float: right;
+                    }
+
+
+                    .right-full {
+                        width: 100%;
                         float: right;
                     }
 
@@ -282,7 +301,6 @@
 
                 <section data-background-color="#FFFFFF">
                     <div style="padding-top:60px; padding-left:60px">
-
                         <div class="container">
                             <h5 style="text-align:left; text-transform: none; color:#00A1E3">SISD vs. SIMD</h5>
                             <div class="left-50" style="padding-top: 20px;">
@@ -298,7 +316,6 @@
                                 </figure>
                             </div>
                         </div>
-
                     </div>
                 </section>
 
@@ -309,12 +326,139 @@
                     </div>
                 </section>
 
+                <section data-background-color="#FFFFFF">
+                    <div style="padding-top:60px; padding-left:60px">
+                        <h5 style="position:absolute; text-align:left; text-transform: none; color:#00A1E3">Strip Mining (1/2)</h2>
+                        <img style="width:80%; padding-left:0px; padding-top:100px;" src="examples\assets\strip_mining_2.png" />
+                        <figcaption style="font-size: 0.5em !important;">Abb. ? – Strip Mining [4]</figcaption>
+                    </div>
+                </section>
+
+                <section data-background-color="#FFFFFF">
+                    <div style="padding-top:60px; padding-left:60px">
+                        <h5 style="position:absolute; text-align:left; text-transform: none; color:#00A1E3">Strip Mining (2/2)</h2>
+                        <img style="width:100%; padding-left:0px; padding-top:100px;" src="examples\assets\StripMining_Separated.svg" />
+                        <figcaption style="font-size: 0.5em !important;">Abb. ? – Hardware-Software Co-Design</figcaption>
+                    </div>
+                </section>
+
+                <!---->
+                <section data-background-color="#FFFFFF">
+                    <div style="padding-top:60px; padding-left:60px">
+                        <h5 style="position:absolute; text-align:left; text-transform: none; color:#00A1E3">NEORV32 Design</h2>
+                        <img style="width:80%; padding-left:0px; padding-top:100px;" src="examples\assets\neorv32_cpu_architecture.png" />
+                        <figcaption style="font-size: 0.5em !important;">Abb. ? – NEORV32 Design [5]</figcaption>
+                    </div>
+                </section>
+
+                <!--
+                <section data-background-color="#FFFFFF">
+                    <div style="padding-top:60px; padding-left:60px">
+                        <h5 style="position:absolute; text-align:left; text-transform: none; color:#00A1E3">VHDL Entities</h2>
+                        <img style="width:58%; padding-left:0px; padding-top:100px;" src="examples\assets\VHDL_Entities.png" />
+                        <figcaption style="font-size: 0.5em !important;">Abb. ? – VHDL Entities</figcaption>
+                    </div>
+                </section>
+                -->
+
+                <section data-background-color="#FFFFFF">
+                    <div style="padding-top:60px; padding-left:60px">
+                        <div class="container">
+                            <div class="left-small" style="padding-top: 20px;">
+                                <h5 style="text-align:left; text-transform: none; color:#00A1E3">VHDL Entities</h5>
+                            </div>
+                            <div class="right-large" style="padding-top:0px;">
+                                <figure>
+                                    <img style="width:100%" src="examples\assets\VHDL_Entities.png" />
+                                    <figcaption style="font-size: 0.5em !important;">Abb. ? – VHDL Entities</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- https://revealjs.com/code/ -->
+                <!-- https://highlightjs.org/demo-->
+                <section>
+                    <div style="padding-top:60px; padding-left:60px">
+                        <div class="container">
+                            <div class="left-small" style="padding-top: 20px;">
+                                <h5 style="text-align:left; text-transform: none; color:#00A1E3">Messung der Zyklen</h5>
+                            </div>
+                            <div class="right-large" style="padding-top:0px;">
+                                <pre>
+                                    <code data-trim class="language-c" data-theme="light" data-line-numbers style="font-size:16px; max-height:800px;">
+                                        // start timing
+                                        neorv32_cpu_csr_write(CSR_MCYCLE, 0);
+
+                                        for (i=0; i<(DATA_NUM/2); i++) {
+                                            v[0] = input_data[i*2+0];
+                                            v[1] = input_data[i*2+1];
+                                            xtea_sw_encipher(XTEA_ROUNDS, v, key);
+                                            cypher_data_sw[i*2+0] = v[0];
+                                            cypher_data_sw[i*2+1] = v[1];
+                                        }
+
+                                        // stop timing
+                                        uint32_t time_enc_sw = neorv32_cpu_csr_read(CSR_MCYCLE);
+
+                                        // -----------------------------------------------------
+                                        // Print timing results
+                                        // -----------------------------------------------------
+                                        neorv32_uart0_printf("\nExecution timing:\n");
+                                        neorv32_uart0_printf("ENC SW=%u cycles\n", time_enc_sw);
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div style="padding-top:60px; padding-left:60px">
+                        <div class="container">
+                            <div class="left-50" style="padding-top: 20px;">
+                                <h5 style="text-align:left; text-transform: none; color:#00A1E3">Auswertung</h5>
+                                <p style="font-size: 0.6em !important;">Mit Matrixextension</p>
+                                <pre>
+                                    <code data-trim class="language-c" data-theme="light" data-line-numbers style="font-size:16px; max-height:800px;">
+                                        "\nBooting from 0x00000000...\r"
+                                        "\n\r"
+                                        "\nMatrix Multiplication Sample \r\r"
+                                        "\n\r"
+                                        "\nExecution timing:\r"
+                                        "\nENC SW=185 cycles\r
+                                    </code>
+                                </pre>
+
+                                <p style="font-size: 0.6em !important;">Ohne Matrixextension</p>
+                                <pre>
+                                    <code data-trim class="language-c" data-theme="light" data-line-numbers style="font-size:16px; max-height:800px;">
+                                        "\nBooting from 0x00000000...\r"
+                                        "\n\r"
+                                        "\nMatrix Multiplication Sample \r\r"
+                                        "\n\r"
+                                        "\nExecution timing:\r"
+                                        "\nENC SW=10385 cycles\r"
+                                    </code>
+                                </pre>
+
+                            </div>
+                            <div class="right-50" style="padding-top:0px;">
+                                <figure>
+                                    <img style="width:63%" src="examples\assets\Calculator.png" />
+                                    <figcaption style="font-size: 0.5em !important;">Abb. ? – Speedup Faktor</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
                 <section data-background-color="#00A1E3">
                     <div style="display: table; height: 699px; overflow: hidden;">
                         <div style="display: table-cell; vertical-align: middle;">
                             <div>
-                            <p style="font-size: 2.5em !important;">Vielen Dank für die Aufmerksamkeit.</p>
+                                <p style="font-size: 2.5em !important;">Vielen Dank für die Aufmerksamkeit.</p>
                             </div>
                         </div>
                     </div>
@@ -332,7 +476,10 @@
                         <div class="source-item">[1] Learn OpenGL Graphics Programming – Joey de Vries, 2020, Kendall&Welling, ISBN 978-90-90-33256-7</div>
                         <div class="source-item">[2] https://www.gilesthomas.com/2025/02/basic-neural-network-matrix-maths-part-1 (Zugriff: 18.01.2026)</div>
                         <div class="source-item">[3] https://riscv.atlassian.net/wiki/download/attachments/663781400/DesignConsiderationsForVME.pdf?api=v2  (Zugriff: 09.02.2026)</div>
+                        <div class="source-item">[4] https://colfaxresearch.com/download/711/ (Zugriff: 10.02.2026)</div>
+                        <div class="source-item">[5] https://stnolting.github.io/neorv32/ (Zugriff: 10.02.2026)</div>
 
+                        <!--
                         <div class="source-item">[3] https://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&No=502</div>
                         <div class="source-item">[4] Digital Design and Computer Architecture, RISC-V Edition, Harris S., Harris D., Elsevier Science, 2021</div>
                         <div class="source-item">[5] https://digilent.com/shop/arty-s7-spartan-7-fpga-development-board/</div>
@@ -342,6 +489,7 @@
                         <div class="source-item">[9] The RISC-V Debug Specification, Tim Newsome, Paul Donahue, 2025-02-21</div>
                         <div class="source-item">[10] https://riscv.org/about/</div>
                         <div class="source-item">[11] https://de.wikipedia.org/wiki/Multiplexer#/media/Datei:Mux-Aufbau_DIN40900.svg</div>
+                            -->
                     </div>
                 </section>
 
@@ -389,7 +537,16 @@
 		<script src="dist/reveal.js"></script>
 		<script src="plugin/notes/notes.js"></script>
 		<script src="plugin/markdown/markdown.js"></script>
+
+        <!-- <link rel="stylesheet" href="plugin/highlight/monokai.css" /> -->
+        <!-- https://github.com/highlightjs/highlight.js/tree/main/src/styles -->
+        <!-- <link rel="stylesheet" href="css/theme/1c-light.css" /> -->
+        <!-- <link rel="stylesheet" href="css/theme/xcode.css" /> -->
+        <!-- <link rel="stylesheet" href="css/theme/vs2015.css" /> -->
+        <link rel="stylesheet" href="css/theme/vs.css" />
+        vs.css
 		<script src="plugin/highlight/highlight.js"></script>
+
 		<script>
 			// More info about initialization & config:
 			// - https://revealjs.com/initialization/
