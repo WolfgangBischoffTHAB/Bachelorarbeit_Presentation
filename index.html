@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Matrix-Extension</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
@@ -17,8 +17,6 @@
         <!-- <link rel="stylesheet" href="plugin/highlight/nnfx-light.css"> -->
 	</head>
 	<body>
-
-
 
 		<div class="reveal">
 			<div class="slides">
@@ -99,6 +97,20 @@
                         float: right;
                     }
 
+                    .left-large {
+                        width: 85%;
+                        float: left;
+                    }
+
+                    .right-small {
+                        width: 15%;
+                        float: right;
+                    }
+
+
+
+
+
 
                     .right-full {
                         width: 100%;
@@ -124,7 +136,6 @@
                     }
                 </style>
 
-
 				<section>
                     <div style="padding-top:60px; padding-left:60px">
                         <h5 style="text-align:left; text-transform: none; color:#00A1E3">Vortragsorganisation</h5>
@@ -132,28 +143,63 @@
                             <ol style="padding-top:60px;">
                                 <li>Beschreibung der Aufgabenstellung und Motivation</li>
                                 <li>Matrixmultiplikation, Grundlagen und Herangehensweise</li>
-                                <li>Die NEORV32 CPU als Ziel der Anpassungen</li>
-                                <li>Beschreibung der Anpassungen</li>
+                                <li>Anpassungen an der NEORV32 CPU</li>
                                 <li>Auswertung und Ausblick</li>
                             </ol>
                     </div>
                 </section>
 
+                <!---->
+                <!---->
+                <!-- TEIL 1 - Beschreibung der Aufgabenstellung und Motivation -->
+                <!---->
+                <!---->
+
                 <section data-background-color="#00A1E3">
-
-                    <h4 style="text-transform: none; width:80%; padding-left: 100px; padding-top: 100px;">
-                        Beschreibung der Aufgabenstellung und Motivation
-                    </h4>
-
-                    <div style="background: none no-repeat scroll 0 0 #fff;
-                        position: absolute;
-                        right: 0%;
-                        bottom: -280%;
-                        width: 220px;
-                        border-radius: 15px 0 0 15px;">
-                        <img src="examples\assets\logo-th-ab-logo-only.svg" />
+                    <div>
+                        <h4 style="text-transform: none; width:80%; padding-left: 100px; padding-top: 100px;">
+                            Beschreibung der Aufgabenstellung und Motivation
+                        </h4>
+                        <div style="background: none no-repeat scroll 0 0 #fff;
+                            position: absolute;
+                            right: 0%;
+                            top: 450px;
+                            width: 220px;
+                            border-radius: 15px 0 0 15px;">
+                            <img src="examples\assets\logo-th-ab-logo-only.svg" />
+                        </div>
                     </div>
+                </section>
 
+                <section>
+
+                    <!--
+                    <div style="padding-top:60px; padding-left:60px">
+                        <h5 style="text-align:left; text-transform: none; color:#00A1E3">Was ist RISC-V</h5>
+                    </div>
+                    -->
+
+                    <div style="padding-top:60px; padding-left:60px">
+                        <div class="container">
+                            <h5 style="text-align:left; text-transform: none; color:#00A1E3">Was ist RISC-V</h5>
+                            <div class="left" style="padding-top: 20px;">
+                                <small>
+                                    <ul>
+                                        <li>Kein Produkt sondern lizenzfreie Spezifikation</li>
+                                        <li>RISC-V ist eine Instruction Set Architecture (ISA)</li>
+                                        <li>Verfügbare Anweisungen und deren Wirkungsweiße werden definiert</li>
+                                        <li>ISA als Schnittstelle zwischen Hardware und Software</li>
+                                    </ul>
+                                </small>
+                            </div>
+                            <div class="right">
+                                <figure>
+                                    <img style="width:50%" src="examples\assets\ISA_Explanation.png" />
+                                    <figcaption style="font-size: 0.5em !important;">Abb. ? – Instruction Set Architecture (ISA)</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
                 </section>
 
                 <section>
@@ -174,7 +220,7 @@
                         <div style="position:absolute; top:120px; left:50px;">
                             <figure>
                                 <img style="width:40%;" src="examples\assets\NEORV32_CPU_Logo.png" />
-                                <figcaption style="font-size: 0.5em !important;">Abb. ? – NEORV32 [7]</figcaption>
+                                <figcaption style="font-size: 0.5em !important;">Abb. ? – NEORV32 (Quelle: [7])</figcaption>
                             </figure>
                         </div>
 
@@ -212,10 +258,9 @@
                         <div style="position:absolute; top:50px; left:900px;">
                             <figure>
                                 <img style="width:60%;" src="examples\assets\ARTY-A7-100T.png" />
-                                <figcaption style="font-size: 0.5em !important;">Abb. ? – FPGA [6]</figcaption>
+                                <figcaption style="font-size: 0.5em !important;">Abb. ? – FPGA (Quelle: [6])</figcaption>
                             </figure>
                         </div>
-
 
                         <!-- <figure>
                             <img style="width:20%; position:absolute;" src="examples\assets\ARTY-A7-100T.png" />
@@ -224,29 +269,19 @@
                     </div>
                 </section>
 
-
-
-
-                <section>
-                    <div style="padding-top:60px; padding-left:60px">
-                        <div class="container">
-                            <h5 style="text-align:left; text-transform: none; color:#00A1E3">3D Transformationen</h5>
-                            <div class="left" style="padding-top: 20px;">
-                                <small>
-                                    <ul>
-                                        <li>Rotation, Translation, Skalierung und Projektion von 3D auf 2D sind Matrixberechnungen</li>
-                                        <li>Jedes Objekt wird mehrmals transformiert</li>
-                                        <li>4K oder 8K Auflösung, 60 Hz bis 200 Hz oder mehr</li>
-                                    </ul>
-                                </small>
-                            </div>
-                            <div class="right">
-                                <figure>
-                                    <img style="width:70%" src="examples\assets\3dTransformsDeVriew.png" />
-                                    <figcaption style="font-size: 0.5em !important;">Abb. 1 – Vektor-Matrix Multiplikation [1]</figcaption>
-                                </figure>
-                            </div>
-                        </div>
+                <section data-background-color="#FFFFFF">
+                    <div style="padding-top:60px; padding-left:120px; padding-right:120px;">
+                        <h5 style="text-align:left; text-transform: none; color:#00A1E3">Motivation zur Matrixberechnung</h5>
+                        <ul style="font-size: 0.6em !important;">
+                            <li>Matrixberechnungen sind die Grundlage der KI und der Computergrafik</li>
+                            <li>Google erfindet den Transformer (Attention Is All You Need) (2017) [10] und OpenAI veröffentlicht daraufhin Chat-GPT (November 2022). (GPT = Generative Pre-trained Transformer)</li>
+                            <li>LLMs werden flächendeckend eingesetzt. Suchmaschinen, Vibe-Coding, Hausaufgaben, Aufsätze, Zusammenfassung und Berichterstellung.</li>
+                            <li>LLMs erstellen Quellcode. Wird es in Zukunft noch Software-Entwickler geben?</li>
+                            <li>Rechenzentren mit einstelligem Gigawatt Stromverbrauch werden gebaut. Atomkraftwerke werden reaktiviert. [11]</li>
+                            <li>RAM und Grafikbeschleuniger sind extrem teuer geworden.</li>
+                            <li>KI-Unterstützung wird von Computertechnik im privaten und im industriellen Umfeld erwartet.</li>
+                            <li>Chips ohne KI-Unterstützung haben einen großen Wettbewerbsnachteil.</li>
+                        </ul>
                     </div>
                 </section>
 
@@ -258,9 +293,8 @@
                                 <small>
                                     <ul>
                                         <li>LLMs sind Neuronale Netze</li>
-                                        <li>Eingaben x</li>
-                                        <li>Gewichte w</li>
-                                        <li>Berechne Skalarprodukt</li>
+                                        <li>Eingaben x, Gewichte w</li>
+                                        <li>Berechne Skalarprodukt aus x und w</li>
                                         <li>Aktivierungsfunktion erzeugt Ausgabe y</li>
                                     </ul>
                                 </small>
@@ -268,12 +302,12 @@
                             <div class="right" style="padding-top: 0px;">
                                  <figure>
                                     <img style="width:70%" src="examples\assets\LLM_1.png" />
-                                    <figcaption style="font-size: 0.5em !important;">Abb. ? – Neuronales Netz [2]</figcaption>
+                                    <figcaption style="font-size: 0.5em !important;">Abb. ? – Neuronales Netz (Quelle: [2])</figcaption>
                                 </figure>
                             </div>
                             <figure>
-                                <img style="width:70%" src="examples\assets\LLM_2.png" />
-                                <figcaption style="font-size: 0.5em !important;">Abb. ? – Mehr als eine Ausgabe [2]</figcaption>
+                                <img style="width:50%" src="examples\assets\LLM_5.png" />
+                                <figcaption style="font-size: 0.5em !important;">Abb. ? – Eine Ausgabe (Quelle: [2])</figcaption>
                             </figure>
                         </div>
                     </div>
@@ -281,19 +315,19 @@
 
                 <section data-background-color="#FFFFFF">
                     <div style="padding-top:60px; padding-left:60px">
-                        <h5 style="text-align:left; text-transform: none; color:#00A1E3">Folientitel</h5>
+                        <h5 style="text-align:left; text-transform: none; color:#00A1E3">Neuronale Netze (2/2)</h5>
 
                         <div style="padding-top: 50px;">
                                 <figure>
                                 <img style="width:70%" src="examples\assets\LLM_3.png" />
-                                <figcaption style="font-size: 0.5em !important;">Abb. ? – Mehr als eine Ausgabe [2]</figcaption>
+                                <figcaption style="font-size: 0.5em !important;">Abb. ? – Vektor-Matrix. Mehr als eine Ausgabe (Quelle: [2])</figcaption>
                             </figure>
                         </div>
 
                         <div style="padding-top: 0px;">
-                                <figure>
+                            <figure>
                                 <img style="width:70%" src="examples\assets\LLM_4.png" />
-                                <figcaption style="font-size: 0.5em !important;">Abb. ? – Mehr als eine Eingabe [2]</figcaption>
+                                <figcaption style="font-size: 0.5em !important;">Abb. ? – Matrix-Matrix. Mehr als eine Eingabe (Quelle: [2])</figcaption>
                             </figure>
                         </div>
                     </div>
@@ -302,20 +336,66 @@
                 <section>
                     <div style="padding-top:60px; padding-left:60px">
                         <div class="container">
-                            <h5 style="text-align:left; text-transform: none; color:#00A1E3">Vorgehen nach mathematischer Vorschrift (1)</h5>
+                            <h5 style="text-align:left; text-transform: none; color:#00A1E3">3D Transformationen</h5>
+                            <div class="left" style="padding-top: 20px;">
+                                <small>
+                                    <ul>
+                                        <li>Rotation, Translation, Skalierung sind Matrixberechnungen</li>
+                                        <li>Projektionen von 3D auf 2D sind Matrixberechnungen</li>
+                                        <li>Jedes Objekt wird mehrmals transformiert. Matrizen können verkettet werden.</li>
+                                        <li>4K oder 8K Auflösung, 60 Hz bis 200 Hz oder mehr</li>
+                                    </ul>
+                                </small>
+                            </div>
+                            <div class="right">
+                                <figure>
+                                    <img style="width:70%" src="examples\assets\3dTransformsDeVriew.png" />
+                                    <figcaption style="font-size: 0.5em !important;">Abb. ? – Vektor-Matrix Multiplikation (Quelle: [1])</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!---->
+                <!---->
+                <!-- TEIL 2 - Matrixmultiplikation, Grundlagen und Herangehensweise -->
+                <!---->
+                <!---->
+
+                <section data-background-color="#00A1E3">
+                    <div>
+                        <h4 style="text-transform: none; width:80%; padding-left: 100px; padding-top: 100px;">
+                            Matrixmultiplikation, Grundlagen und Herangehensweise
+                        </h4>
+                        <div style="background: none no-repeat scroll 0 0 #fff;
+                            position: absolute;
+                            right: 0%;
+                            top: 450px;
+                            width: 220px;
+                            border-radius: 15px 0 0 15px;">
+                            <img src="examples\assets\logo-th-ab-logo-only.svg" />
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div style="padding-top:60px; padding-left:60px">
+                        <div class="container">
+                            <h5 style="text-align:left; text-transform: none; color:#00A1E3">Vorgehen nach mathematischer Vorschrift</h5>
                             <div class="left" style="padding-top: 20px;">
                                 <small>
                                     <div style="text-align:left; padding-top: 20px;">
-                                        Wird für jede Zelle der Ergebnis-Matrix ausgeführt.
+                                        Für jede Zelle der Ergebnis-Matrix:
                                     </div>
                                     <div>
                                         <ul>
-                                            <li>Zeile der ersten Matrix</li>
-                                            <li>Spalte der zweiten Matrix</li>
+                                            <li>Zeile der ersten Matrix als Vektor</li>
+                                            <li>Spalte der zweiten Matrix als Vektor</li>
                                             <li>Skalarprodukt dieser Vektoren</li>
                                         </ul>
                                     </div>
-
+<!--
                                     <div style="text-align:left; padding-top: 20px;">
                                         Nachteile:
                                     </div>
@@ -323,37 +403,122 @@
                                         <ul>
                                             <li>Verursacht viele Load- Store-Schritte</li>
                                             <li>Mangelnde Cache-Lokalität</li>
-                                            <li>Performance schlecht</li>
+                                            <li>Performance schlecht durch Einzelschritte</li>
                                         </ul>
                                     </div>
+-->
                                 </small>
                             </div>
                             <div class="right" style="padding-top: 20px;">
                                  <figure>
                                     <img style="width:70%" src="examples\assets\Matrixmultiplikation_Mathematical.png" />
-                                    <figcaption style="font-size: 0.5em !important;">Abb. 2 – Vorschrift Matrixmultiplikation</figcaption>
+                                    <figcaption style="font-size: 0.5em !important;">Abb. ? – Vorschrift Matrixmultiplikation</figcaption>
                                 </figure>
                             </div>
                         </div>
                     </div>
                 </section>
 
+                <style>
+                    .wrapper {
+                        width: 1000px;
+                        border: 0px solid black;
+                        overflow: hidden; /* will contain if #first is longer than #second */
+
+                    }
+                    .first {
+                        width: 50%;
+                        float: left; /* add this */
+                        border: 0px solid red;
+                    }
+                    .second {
+                        border: 0px solid green;
+                        overflow: hidden; /* if you don't want #second to wrap below #first */
+                    }
+                </style>
+
+                <section>
+                    <div style="padding-top:60px; padding-left:60px">
+                        <h5 style="text-align:left; text-transform: none; color:#00A1E3">Nachteile und Lösungsansätze</h5>
+
+                        <div>
+                            <figure>
+                                <img style="width:40%" src="examples\assets\LoadStoreUnitAndBus_Horizontal.svg" />
+                                <figcaption style="font-size: 0.5em !important;">Abb. ? – Speicher-Hierarchie</figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="wrapper" style="padding-left: 100px;">
+                            <div class="first">
+                                <small>
+                                    <div style="text-align:left; padding-top: 20px;">
+                                        <b>Nachteile naiver Matrixmultiplikation:</b>
+                                    </div>
+                                    <div>
+                                        <ul>
+                                            <li>Mangelnde Cache-Lokalität</li>
+                                            <li>Verursacht viele Load- Store-Schritte</li>
+                                            <li>Performance schlecht durch Einzelschritte</li>
+                                        </ul>
+                                    </div>
+                                </small>
+                            </div>
+                            <div class="second">
+                                <small>
+                                    <div style="text-align:left; padding-top: 20px;">
+                                        <b>Lösungsansatz:</b>
+                                    </div>
+                                    <div>
+                                        <ul>
+                                            <li>Cache-Lokalität durch Mathe-Bibliotheken</li>
+                                            <li>Single Instruction Multiple Data (SIMD)</li>
+                                            <li>Single Instruction Multiple Data (SIMD)</li>
+                                        </ul>
+                                    </div>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section data-background-color="#FFFFFF">
+                    <div style="padding-top:60px; padding-left:60px">
+                        <div class="container">
+                            <h5 style="text-align:left; text-transform: none; color:#00A1E3">SISD vs. SIMD</h5>
+                            <p style="font-size: 0.8em !important; text-align:left;"><b>Beachte:</b> Jede Operation besteht aus Load, Operation und Store.</p>
+                            <div class="left-50" style="padding-top: 0px;">
+                                <figure>
+                                    <img style="width:90%" src="examples\assets\SISD.gif" />
+                                    <figcaption style="font-size: 0.5em !important;">Abb. ? – Single Instruction Single Data (SISD)</figcaption>
+                                </figure>
+                            </div>
+                            <div class="right-50" style="padding-top: 0px;">
+                                <figure>
+                                    <img style="width:90%" src="examples\assets\SIMD.gif" />
+                                    <figcaption style="font-size: 0.5em !important;">Abb. ? – Single Instruction Multiple Data (SIMD)</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!--
                 <section>
                     <div style="padding-top:60px; padding-left:60px">
                         <div class="container">
-                            <h5 style="text-align:left; text-transform: none; color:#00A1E3">Ansatz zur Verbesserung: Blockbildung und dyadisches Produkt</h5>
+                            <h5 style="text-align:left; text-transform: none; color:#00A1E3">Ansatz zur Verbesserung: Cache-Lokalität durch Blockbildung</h5>
                             <div class="left" style="padding-top: 50px;">
                                 <figure>
                                     <img style="width:70%" src="examples\assets\Matrix_Tiling.png" />
-                                    <figcaption style="font-size: 0.5em !important;">Abb. 3 – Aufteilung in Blöcke</figcaption>
+                                    <figcaption style="font-size: 0.5em !important;">Abb. ? – Aufteilung in Blöcke</figcaption>
                                 </figure>
                             </div>
                             <div class="right" style="padding-top: 50px;">
                                  <small>
                                     <ul style="width:70%;">
-                                        <li>Mathe-Bibliotheken sind Hardware-Software-Co-Designs.</li>
+
                                         <li>Matrizen werden neu in den Speicher ‘gepackt’ um cachefreundlich zu sein.</li>
-                                        <li>Einzelne Blöcke werden mit dem Outer-Product berechnet.</li>
+
                                         <li>Berechnung der Blöcke erfolgt in einem sogenannten “Kernel”. Dort werden Instruktionen mit Hardware-Beschleunigung ausgeführt.</li>
                                         <li>RISC-V Bezeichnung: Strip-Mining</li>
                                     </ul>
@@ -362,36 +527,105 @@
                         </div>
                     </div>
                 </section>
+-->
+                <!--<li>Mathe-Bibliotheken sind Hardware-Software-Co-Designs.</li>-->
+                <!--<li>Einzelne Blöcke werden mit dem Outer-Product berechnet.</li>-->
+
+<!--
+                <section data-background-color="#FFFFFF">
+                    <div style="padding-top:60px; padding-left:120px; padding-right:120px;">
+                        <h5 style="text-align:left; text-transform: none; color:#00A1E3">Die RISC-V Vector Extension</h5>
+                        <ul style="font-size: 0.6em !important;">
+                            <li>RISC-V Vector Extension (RVV) wurde Ende des Jahres 2021 ratifiziert.</li>
+                            <li>Es gibt RISC-V CPU auf dem Markt, die RVV unterstützen und kleine LLM ausführen können.</li>
+                        </ul>
+                        <img style="width:55%; padding-left:0px; padding-top:0px;" src="examples\assets\CombiningVectorRegisters.png" />
+                        <figcaption style="font-size: 0.5em !important;">Abb. ? – Vektorregister (Quelle: [12])</figcaption>
+                    </div>
+                </section>
+            -->
+<!--<li>RISC-V Vector Extension (RVV) dient als Vorbild für die Matrix-Extension dieser Arbeit.</li>-->
+                <section data-background-color="#FFFFFF">
+                    <div style="padding-top:60px; padding-left:60px">
+                        <h5 style="position:absolute; text-align:left; text-transform: none; color:#00A1E3">Strip Mining (1/3) - Prinzip aus der RISC-V Vector Extension</h2>
+                        <!--<p style="font-size: 0.8em !important; text-align:left;">Aus dem Strip Mining sind die Instruktionen abgeleitet.</p>-->
+                        <img style="width:80%; padding-left:0px; padding-top:100px;" src="examples\assets\strip_mining_2.png" />
+                        <figcaption style="font-size: 0.5em !important;">Abb. ? – Strip Mining (Quelle: [4])</figcaption>
+                    </div>
+                </section>
+
+                <section data-background-color="#FFFFFF">
+                    <div style="padding-top:60px; padding-left:60px; padding-right:60px">
+                        <h5 style="position:absolute; text-align:left; text-transform: none; color:#00A1E3">Strip Mining (2/3) - Ablauf</h2>
+                        <img style="width:100%; padding-left:0px; padding-top:100px;" src="examples\assets\StripMining_Separated.svg" />
+                        <figcaption style="font-size: 0.5em !important;">Abb. ? – Hardware-Software Co-Design</figcaption>
+                    </div>
+                </section>
+
+                <section>
+                    <div style="padding-top:60px; padding-left:60px">
+                        <h5 style="text-align:left; text-transform: none; color:#00A1E3">Strip Mining (3/3) - SIMD Instruktionen</h5>
+
+                        <div class="wrapper" style="padding-left: 100px; padding-top:100px;">
+                            <div class="first">
+                                <small>
+                                    <div style="text-align:left; padding-top: 20px;">
+                                        <b>Vector Extension</b>
+                                    </div>
+                                    <div>
+                                        <ul>
+                                            <li>set(i)vli</li>
+                                            <li>vle32.v (SIMD-Load)</li>
+                                            <li>vadd.vv (SIMD-Operation)</li>
+                                            <li>vse32.v (SIMD-Store)</li>
+                                        </ul>
+                                    </div>
+                                </small>
+                            </div>
+                            <div class="second">
+                                <small>
+                                    <div style="text-align:left; padding-top: 20px;">
+                                        <b>Matrix Extension</b>
+                                    </div>
+                                    <div>
+                                        <ul>
+                                            <li>Keine Konfigurierbarkeit</li>
+                                            <li>mle32 (SIMD-Load)</li>
+                                            <li>mmul32 (SIMD-Operation)</li>
+                                            <li>mse32 (SIMD-Store)</li>
+                                        </ul>
+                                    </div>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div style="padding-top:60px; padding-left:60px">
+                        <h5 style="text-align:left; text-transform: none; color:#00A1E3">RISC-V Ansätze zur Matrix-Erweiterung</h5>
+                    </div>
+                    <div>
+                        <figure>
+                            <img style="width:70%" src="examples\assets\KrsteAsanovic_RISCV_StateOfTheUnion.png" />
+                            <figcaption style="font-size: 0.5em !important;">Abb. ? – Ansätze zur Matrix-Extension (Quelle: [8])</figcaption>
+                        </figure>
+                    </div>
+                </section>
+
+
 
                 <section data-background-color="#FFFFFF">
                     <div style="padding-top:60px; padding-left:60px">
                         <h5 style="text-align:left; text-transform: none; color:#00A1E3">Multiply Accumulate (MAC) Array</h5>
                         <figure>
                             <img style="width:40%" src="examples\assets\MAC_MatrixAccumulator.png" />
-                            <figcaption style="font-size: 0.5em !important;">Abb. 4 – Multiply Accumulate (MAC) Array [3]</figcaption>
+                            <figcaption style="font-size: 0.5em !important;">Abb. ? – Multiply Accumulate (MAC) Array (Quelle: [3])</figcaption>
                         </figure>
                     </div>
                 </section>
 
-                <section data-background-color="#FFFFFF">
-                    <div style="padding-top:60px; padding-left:60px">
-                        <div class="container">
-                            <h5 style="text-align:left; text-transform: none; color:#00A1E3">SISD vs. SIMD</h5>
-                            <div class="left-50" style="padding-top: 20px;">
-                                <figure>
-                                    <img style="width:100%" src="examples\assets\SISD.gif" />
-                                    <figcaption style="font-size: 0.5em !important;">Abb. ? – SISD</figcaption>
-                                </figure>
-                            </div>
-                            <div class="right-50" style="padding-top: 20px;">
-                                <figure>
-                                    <img style="width:100%" src="examples\assets\SIMD.gif" />
-                                    <figcaption style="font-size: 0.5em !important;">Abb. ? – SIMD</figcaption>
-                                </figure>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+
 
 				<section data-background-color="#000000">
                     <div style="padding-top:60px; padding-left:60px">
@@ -400,53 +634,254 @@
                     </div>
                 </section>
 
-                <section data-background-color="#FFFFFF">
-                    <div style="padding-top:60px; padding-left:60px">
-                        <h5 style="position:absolute; text-align:left; text-transform: none; color:#00A1E3">Strip Mining (1/2)</h2>
-                        <img style="width:80%; padding-left:0px; padding-top:100px;" src="examples\assets\strip_mining_2.png" />
-                        <figcaption style="font-size: 0.5em !important;">Abb. ? – Strip Mining [4]</figcaption>
-                    </div>
-                </section>
-
-                <section data-background-color="#FFFFFF">
-                    <div style="padding-top:60px; padding-left:60px">
-                        <h5 style="position:absolute; text-align:left; text-transform: none; color:#00A1E3">Strip Mining (2/2)</h2>
-                        <img style="width:100%; padding-left:0px; padding-top:100px;" src="examples\assets\StripMining_Separated.svg" />
-                        <figcaption style="font-size: 0.5em !important;">Abb. ? – Hardware-Software Co-Design</figcaption>
-                    </div>
-                </section>
-
                 <!---->
-                <section data-background-color="#FFFFFF">
-                    <div style="padding-top:60px; padding-left:60px">
-                        <h5 style="position:absolute; text-align:left; text-transform: none; color:#00A1E3">NEORV32 Design</h2>
-                        <img style="width:80%; padding-left:0px; padding-top:100px;" src="examples\assets\neorv32_cpu_architecture.png" />
-                        <figcaption style="font-size: 0.5em !important;">Abb. ? – NEORV32 Design [5]</figcaption>
+                <!---->
+                <!-- TEIL 3 - Anpassungen an der NEORV32 CPU -->
+                <!---->
+                <!---->
+
+                <section data-background-color="#00A1E3">
+                    <div>
+                        <h4 style="text-transform: none; width:80%; padding-left: 100px; padding-top: 100px;">
+                            Anpassungen an der NEORV32 CPU
+                        </h4>
+                        <div style="background: none no-repeat scroll 0 0 #fff;
+                            position: absolute;
+                            right: 0%;
+                            top: 450px;
+                            width: 220px;
+                            border-radius: 15px 0 0 15px;">
+                            <img src="examples\assets\logo-th-ab-logo-only.svg" />
+                        </div>
                     </div>
                 </section>
 
                 <!--
                 <section data-background-color="#FFFFFF">
                     <div style="padding-top:60px; padding-left:60px">
-                        <h5 style="position:absolute; text-align:left; text-transform: none; color:#00A1E3">VHDL Entities</h2>
-                        <img style="width:58%; padding-left:0px; padding-top:100px;" src="examples\assets\VHDL_Entities.png" />
-                        <figcaption style="font-size: 0.5em !important;">Abb. ? – VHDL Entities</figcaption>
+                        <h5 style="position:absolute; text-align:left; text-transform: none; color:#00A1E3">Komponenten eines denkbaren CPU Designs</h2>
+                        <img style="width:70%; padding-left:0px; padding-top:100px;" src="examples\assets\PipelinedDesign.png" />
+                        <figcaption style="font-size: 0.5em !important;">Abb. ? – Kontrolllogik und Datenpfad (Quelle: [9])</figcaption>
                     </div>
                 </section>
                 -->
 
                 <section data-background-color="#FFFFFF">
                     <div style="padding-top:60px; padding-left:60px">
-                        <div class="container">
-                            <div class="left-small" style="padding-top: 20px;">
-                                <h5 style="text-align:left; text-transform: none; color:#00A1E3">VHDL Entities</h5>
+                        <h5 style="position:absolute; text-align:left; text-transform: none; color:#00A1E3">NEORV32 Design</h2>
+                        <img style="width:80%; padding-left:0px; padding-top:100px;" src="examples\assets\neorv32_cpu_architecture.png" />
+                        <figcaption style="font-size: 0.5em !important;">Abb. ? – NEORV32 Design (Quelle: [5])</figcaption>
+                    </div>
+                </section>
+
+                <section data-background-color="#FFFFFF">
+                    <div style="padding-top:60px; padding-left:60px">
+                        <h5 style="position:absolute; text-align:left; text-transform: none; color:#00A1E3">NEORV32 State Machine der Execution Engine</h2>
+                        <img style="width:70%; padding-left:0px; padding-top:50px;" src="examples\assets\StateMachine.svg" />
+                        <figcaption style="font-size: 0.5em !important;">Abb. ? – NEORV32 Execution Engine</figcaption>
+                    </div>
+                </section>
+
+                <section data-background-color="#FFFFFF">
+
+                    <section>
+                        <div style="padding-top:60px; padding-left:60px">
+                            <div class="container">
+                                <div class="left-small" style="padding-top: 20px;">
+                                    <h5 style="text-align:left; text-transform: none; color:#00A1E3">VHDL Entities</h5>
+                                </div>
+                                <div class="right-large" style="padding-top:0px;">
+                                    <figure>
+                                        <img style="width:100%" src="examples\assets\VHDL_Entities.png" />
+                                        <figcaption style="font-size: 0.5em !important;">Abb. ? – VHDL Entities</figcaption>
+                                    </figure>
+                                </div>
                             </div>
-                            <div class="right-large" style="padding-top:0px;">
-                                <figure>
-                                    <img style="width:100%" src="examples\assets\VHDL_Entities.png" />
-                                    <figcaption style="font-size: 0.5em !important;">Abb. ? – VHDL Entities</figcaption>
-                                </figure>
+                        </div>
+                    </section>
+
+                    <section>
+                        <div style="padding-top:20px; padding-left:60px">
+                            <div class="container">
+                                <h5 style="text-align:left; text-transform: none; color:#00A1E3">VHDL Entities - Fetch mle32 (SIMD-Load)</h5>
+                                <div class="container">
+                                    <div class="left-large" style="padding-top:0px;">
+                                        <figure>
+                                            <img style="width:85%" src="examples\assets\VHDL_Entities_1.svg" />
+                                        </figure>
+                                    </div>
+                                    <div class="right-small" style="padding-top:0px;">
+                                        <figcaption style="font-size: 0.5em !important;">Abb. ? – Fetch mle32 (SIMD-Load)</figcaption>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <div style="padding-top:20px; padding-left:60px">
+                            <div class="container">
+                                <h5 style="text-align:left; text-transform: none; color:#00A1E3">VHDL Entities - Bus Zugriff</h5>
+                                <div class="container">
+                                    <div class="left-large" style="padding-top:0px;">
+                                        <figure>
+                                            <img style="width:85%" src="examples\assets\VHDL_Entities_2.svg" />
+                                        </figure>
+                                    </div>
+                                    <div class="right-small" style="padding-top:0px;">
+                                        <figcaption style="font-size: 0.5em !important;">Abb. ? – Bus Zugriff</figcaption>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <div style="padding-top:20px; padding-left:60px">
+                            <div class="container">
+                                <h5 style="text-align:left; text-transform: none; color:#00A1E3">VHDL Entities - Matrix-Register befüllen</h5>
+                                <div class="container">
+                                    <div class="left-large" style="padding-top:0px;">
+                                        <figure>
+                                            <img style="width:85%" src="examples\assets\VHDL_Entities_3.svg" />
+                                        </figure>
+                                    </div>
+                                    <div class="right-small" style="padding-top:0px;">
+                                        <figcaption style="font-size: 0.5em !important;">Abb. ? – Matrix-Register befüllen</figcaption>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <div style="padding-top:20px; padding-left:60px">
+                            <div class="container">
+                                <h5 style="text-align:left; text-transform: none; color:#00A1E3">VHDL Entities - Fetch mmul32 (SIMD-Operation)</h5>
+                                <div class="container">
+                                    <div class="left-large" style="padding-top:0px;">
+                                        <figure>
+                                            <img style="width:85%" src="examples\assets\VHDL_Entities_4.svg" />
+                                        </figure>
+                                    </div>
+                                    <div class="right-small" style="padding-top:0px;">
+                                        <figcaption style="font-size: 0.5em !important;">Abb. ? – Fetch mmul32 (SIMD-Operation)</figcaption>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <div style="padding-top:20px; padding-left:60px">
+                            <div class="container">
+                                <h5 style="text-align:left; text-transform: none; color:#00A1E3">VHDL Entities - mmul32 (SIMD-Operation)</h5>
+                                <div class="container">
+                                    <div class="left-large" style="padding-top:0px;">
+                                        <figure>
+                                            <img style="width:85%" src="examples\assets\VHDL_Entities_5.svg" />
+                                        </figure>
+                                    </div>
+                                    <div class="right-small" style="padding-top:0px;">
+                                        <figcaption style="font-size: 0.5em !important;">Abb. ? – mmul32 (SIMD-Operation)</figcaption>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <div style="padding-top:20px; padding-left:60px">
+                            <div class="container">
+                                <h5 style="text-align:left; text-transform: none; color:#00A1E3">VHDL Entities - Dyadisches Produkt ausführen</h5>
+                                <div class="container">
+                                    <div class="left-large" style="padding-top:0px;">
+                                        <figure>
+                                            <img style="width:85%" src="examples\assets\VHDL_Entities_6.svg" />
+                                        </figure>
+                                    </div>
+                                    <div class="right-small" style="padding-top:0px;">
+                                        <figcaption style="font-size: 0.5em !important;">Abb. ? – Dyadisches Produkt ausführen</figcaption>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <div style="padding-top:20px; padding-left:60px">
+                            <div class="container">
+                                <h5 style="text-align:left; text-transform: none; color:#00A1E3">VHDL Entities - Fetch mse32 (SIMD-Store)</h5>
+                                <div class="container">
+                                    <div class="left-large" style="padding-top:0px;">
+                                        <figure>
+                                            <img style="width:85%" src="examples\assets\VHDL_Entities_7.svg" />
+                                        </figure>
+                                    </div>
+                                    <div class="right-small" style="padding-top:0px;">
+                                        <figcaption style="font-size: 0.5em !important;">Abb. ? – Fetch mse32 (SIMD-Store)</figcaption>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <div style="padding-top:20px; padding-left:60px">
+                            <div class="container">
+                                <h5 style="text-align:left; text-transform: none; color:#00A1E3">VHDL Entities - Daten aus den Matrix-Registern laden</h5>
+                                <div class="container">
+                                    <div class="left-large" style="padding-top:0px;">
+                                        <figure>
+                                            <img style="width:85%" src="examples\assets\VHDL_Entities_8.svg" />
+                                        </figure>
+                                    </div>
+                                    <div class="right-small" style="padding-top:0px;">
+                                        <figcaption style="font-size: 0.5em !important;">Abb. ? – Daten aus den Matrix-Registern laden</figcaption>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <div style="padding-top:20px; padding-left:60px">
+                            <div class="container">
+                                <h5 style="text-align:left; text-transform: none; color:#00A1E3">VHDL Entities - Daten in den RAM/Cache speichern</h5>
+                                <div class="container">
+                                    <div class="left-large" style="padding-top:0px;">
+                                        <figure>
+                                            <img style="width:85%" src="examples\assets\VHDL_Entities_9.svg" />
+                                        </figure>
+                                    </div>
+                                    <div class="right-small" style="padding-top:0px;">
+                                        <figcaption style="font-size: 0.5em !important;">Abb. ? – Daten in den RAM/Cache speichern</figcaption>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </section>
+
+                <!---->
+                <!---->
+                <!-- TEIL 4 - Auswertung und Ausblick -->
+                <!---->
+                <!---->
+
+                <section data-background-color="#00A1E3">
+                    <div>
+                        <h4 style="text-transform: none; width:80%; padding-left: 100px; padding-top: 100px;">
+                            Auswertung und Ausblick
+                        </h4>
+                        <div style="background: none no-repeat scroll 0 0 #fff;
+                            position: absolute;
+                            right: 0%;
+                            top: 450px;
+                            width: 220px;
+                            border-radius: 15px 0 0 15px;">
+                            <img src="examples\assets\logo-th-ab-logo-only.svg" />
                         </div>
                     </div>
                 </section>
@@ -454,10 +889,19 @@
                 <!-- https://revealjs.com/code/ -->
                 <!-- https://highlightjs.org/demo-->
                 <section>
-                    <div style="padding-top:60px; padding-left:60px">
+                    <div style="padding-top:60px; padding-left:60px; padding-right:60px">
                         <div class="container">
                             <div class="left-small" style="padding-top: 20px;">
                                 <h5 style="text-align:left; text-transform: none; color:#00A1E3">Messung der Zyklen</h5>
+                                <small>
+                                    <ul>
+                                        <li>CSR = Configuration and Status Register.</li>
+                                        <li>Das CSR_MCYCLE Register wird mit jedem CPU-Zyklus inkrementiert.</li>
+                                        <li>Auf Null zurücksetzen.</li>
+                                        <li>Code ausführen.</li>
+                                        <li>Zyklenzahl auslesen und ausgeben.</li>
+                                    </ul>
+                                </small>
                             </div>
                             <div class="right-large" style="padding-top:0px;">
                                 <pre>
@@ -488,32 +932,180 @@
                     </div>
                 </section>
 
+                <section data-background-color="#FFFFFF">
+                    <div style="padding-top:60px; padding-left:60px">
+                        <h5 style="position:absolute; text-align:left; text-transform: none; color:#00A1E3">Testanwendung - Ohne Hardwarebeschleunigung</h2>
+
+                        <pre style="margin-top:70px;">
+                            <code data-trim class="language-c" data-theme="light" data-line-numbers style="font-size:16px; ">
+
+                                #include &lt;stdio.h&gt;
+
+                                #define DIMENSION 4
+                                #define ELEMENTS DIMENSION*DIMENSION
+
+                                int standardMatrixMult(int* matrixA, int* matrixB, int* matrixC, int rows, int columns) {
+
+                                    int counter = 0;
+
+                                    // over row of matrix B
+                                    for (int i = 0; i < rows; i++) {
+
+                                        // over column of matrix A
+                                        for (int j = 0; j < columns; j++) {
+
+                                            // fuse row and column together into a single cell of matrix C
+                                            for (int k = 0; k < columns; k++) {
+
+                                                // int aIdx = i * columns + k;
+                                                int temp_aIdx = i * columns;
+                                                int aIdx = temp_aIdx + k;
+
+                                                // int bIdx = k * columns + j;
+                                                int temp_bIdx = k * columns;
+                                                int bIdx = temp_bIdx + j;
+
+                                                // int cIdx = i * rows + j;
+                                                int temp_cIdx = i * rows;
+                                                int cIdx = temp_cIdx + j;
+
+                                                int aVal = matrixA[aIdx];
+                                                int bVal = matrixB[bIdx];
+
+                                                int mult_temp = aVal * bVal;
+
+                                                int temp_2 = matrixC[cIdx];
+                                                int temp_3 = temp_2 + mult_temp;
+                                                matrixC[cIdx] = temp_3;
+
+                                            }
+
+                                        }
+
+                                    }
+
+                                    return 0;
+                                }
+
+                                int main()
+                                {
+                                    neorv32_cpu_csr_write(CSR_MCYCLE, 0);
+
+                                    int matrixA[ELEMENTS] = {
+                                        1, 2, 3, 4,
+                                        5, 6, 7, 8,
+                                        9, 10, 11, 12,
+                                        13, 14, 15, 16
+                                    };
+                                    int matrixC[ELEMENTS] = {
+                                        0, 0, 0, 0,
+                                        0, 0, 0, 0,
+                                        0, 0, 0, 0,
+                                        0, 0, 0, 0
+                                    };
+                                    int matrixB[ELEMENTS] = {
+                                        1, 2, 3, 4,
+                                        5, 6, 7, 8,
+                                        9, 10, 11, 12,
+                                        13, 14, 15, 16
+                                    };
+
+                                    int a22 = standardMatrixMult(matrixA, matrixB, matrixC, 4, 4);
+
+                                    uint32_t time_enc_sw = neorv32_cpu_csr_read(CSR_MCYCLE);
+
+                                    // -------------------------------------------------
+                                    // Print timing results
+                                    // -------------------------------------------------
+                                    neorv32_uart0_printf("\nExecution timing:\n");
+                                    neorv32_uart0_printf("ENC SW = %u cycles\n", time_enc_sw);
+
+                                    int resultPrettyPrintC = prettyPrintFormatMatrix(matrixC, DIMENSION);
+
+                                    exit();
+                                    return 0;
+                                }
+                            </code>
+                        </pre>
+                    </div>
+                </section>
+
+                <section data-background-color="#FFFFFF">
+                    <div style="padding-top:60px; padding-left:60px">
+                        <h5 style="position:absolute; text-align:left; text-transform: none; color:#00A1E3">Testanwendung - Mit Hardwarebeschleunigung</h2>
+
+                        <pre style="margin-top:70px;">
+                            <code data-trim class="language-c" data-theme="light" data-line-numbers style="font-size:16px; ">
+
+                                #include &lt;neorv32.h&gt;
+
+                                uint32_t matrix_a[16] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
+
+                                uint32_t matrix_b[16] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
+
+                                int main() {
+
+                                    uint32_t *matrix_a_addr = &matrix_a[0];
+                                    uint32_t *matrix_b_addr = &matrix_b[0];
+
+                                    uint32_t matrix_unit_a = 0;
+                                    uint32_t matrix_unit_b = 0;
+
+                                    // start timing
+                                    neorv32_cpu_csr_write(CSR_MCYCLE, 0);
+
+                                    // Load (mle32)
+                                    matrix_unit_a = CUSTOM_INSTR_I_TYPE(0x000, matrix_a_addr, 0b010, 0b1011011);
+                                    matrix_unit_b = CUSTOM_INSTR_I_TYPE(0x001, matrix_b_addr, 0b010, 0b1011011);
+
+                                    // Matrix Operation (mmul32)
+                                    uint32_t matrix_mul = CUSTOM_INSTR_I_TYPE(0x000, matrix_a_addr, 0b100, 0b1011011);
+
+                                    // Store (mse32)
+                                    matrix_unit_a = CUSTOM_INSTR_I_TYPE(0x000, matrix_a_addr, 0b001, 0b1011011);
+                                    matrix_unit_b = CUSTOM_INSTR_I_TYPE(0x001, matrix_b_addr, 0b001, 0b1011011);
+
+                                    // end timing
+                                    uint32_t time_enc_sw = neorv32_cpu_csr_read(CSR_MCYCLE);
+
+                                    // output duration
+                                    neorv32_uart0_printf("\nExecution timing:\n");
+                                    neorv32_uart0_printf("ENC SW = %u cycles\n", time_enc_sw);
+
+                                    return 0;
+                                }
+                            </code>
+                        </pre>
+                    </div>
+                </section>
+
                 <section>
                     <div style="padding-top:60px; padding-left:60px">
                         <div class="container">
                             <div class="left-50" style="padding-top: 20px;">
                                 <h5 style="text-align:left; text-transform: none; color:#00A1E3">Auswertung</h5>
-                                <p style="font-size: 0.6em !important;">Mit Matrixextension</p>
-                                <pre>
-                                    <code data-trim class="language-c" data-theme="light" data-line-numbers style="font-size:16px; max-height:800px;">
-                                        "\nBooting from 0x00000000...\r"
-                                        "\n\r"
-                                        "\nMatrix Multiplication Sample \r\r"
-                                        "\n\r"
-                                        "\nExecution timing:\r"
-                                        "\nENC SW=185 cycles\r
-                                    </code>
-                                </pre>
 
                                 <p style="font-size: 0.6em !important;">Ohne Matrixextension</p>
                                 <pre>
-                                    <code data-trim class="language-c" data-theme="light" data-line-numbers style="font-size:16px; max-height:800px;">
+                                    <code data-trim class="language-c" data-theme="light" data-line-numbers="6" style="font-size:16px; max-height:800px;">
                                         "\nBooting from 0x00000000...\r"
                                         "\n\r"
                                         "\nMatrix Multiplication Sample \r\r"
                                         "\n\r"
                                         "\nExecution timing:\r"
                                         "\nENC SW=10385 cycles\r"
+                                    </code>
+                                </pre>
+
+                                <p style="font-size: 0.6em !important;">Mit Matrixextension</p>
+                                <pre>
+                                    <code data-trim class="language-c" data-theme="light" data-line-numbers="6" style="font-size:16px; max-height:800px;">
+                                        "\nBooting from 0x00000000...\r"
+                                        "\n\r"
+                                        "\nMatrix Multiplication Sample \r\r"
+                                        "\n\r"
+                                        "\nExecution timing:\r"
+                                        "\nENC SW=185 cycles\r
                                     </code>
                                 </pre>
 
@@ -526,6 +1118,38 @@
                             </div>
                         </div>
                     </div>
+                </section>
+
+                <section data-background-color="#FFFFFF">
+                    <div style="padding-top:60px; padding-left:60px">
+                        <h5 style="text-align:left; text-transform: none; color:#00A1E3">Bewertung und Ausblick</h2>
+                    </div>
+                    <small>
+                        <!--
+                        <div style="text-align:left; padding-top: 20px;">
+                            <b>Matrix Extension:</b>
+                        </div>
+                        -->
+                        <!--
+                        <li>Spezielles Design oder allgemeines Design?</li>
+                        -->
+                        <div style="margin-top:30px;">
+                            <ul style="width:800px;">
+                                <li>Umfang ist grundlegend im Vergleich zu einem vollwertigen Design.</li>
+                                <li>Mehr Datentypen (Standard- als auch LLM-Datentypen).</li>
+                                <li>Konvertierung zwischen Datentypen.</li>
+                                <li>Mehr Parallelität (Mehr als eine Matrix-Engine).</li>
+                                <li>Schnellerer Zugriff auf den Speicher.</li>
+                                <li>Erweiterung eines Compilers für die neuen Anweisungen.</li>
+                            </ul>
+                        </div>
+                        <div style="margin-top:30px;">
+                            <ul style="width:800px;">
+                                <li>LLMs haben den Hardware-Markt jetzt schon verschoben.</li>
+                                <li>Neue Matrix-CPUs werden eine komplette Disruption des Hardware-Markts herbeiführen.</li>
+                            </ul>
+                        </div>
+                    </small>
                 </section>
 
                 <section data-background-color="#00A1E3">
@@ -554,18 +1178,44 @@
                         <div class="source-item">[5] https://stnolting.github.io/neorv32/ (Zugriff: 10.02.2026)</div>
                         <div class="source-item">[6] https://www.digikey.de/short/wjh1v7vr (Zugriff: 14.02.2026)</div>
                         <div class="source-item">[7] https://stnolting.github.io/neorv32/ug/ (Zugriff: 14.02.2026)</div>
+                        <div class="source-item">[8] https://riscv-europe.org/summit/2025/media/proceedings/2025-05-13-RISC-V-Summit-Europe-11h30-ASANOVI%C4%86-slides.pdf (Zugriff: 14.02.2026)</div>
+                        <div class="source-item">[9] HARRIS, Sarah L. ; HARRIS, David: Digital Design and Computer Architecture, RISC-V Edition. (2021). ISBN 0128200642, 97801282006430</div>
+                        <div class="source-item">[10] Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, Illia Polosukhin DBLP:journals/corr/VaswaniSPUJGKP17 https://arxiv.org/abs/1706.03762v7</div>
+                        <div class="source-item">[11] https://www.zeit.de/wirtschaft/unternehmen/2025-10/google-atomkraftwerk-stromversorgung-rechenzentren-kuenstliche-intelligenz (Zugriff: 16.02.2026)</div>
+                        <div class="source-item">[12] https://eupilot.eu/wp-content/uploads/2022/11/RISC-V-VectorExtension-1-1.pdf (Zugriff: 16.02.2026)</div>
+                    </div>
+                </section>
 
-                        <!--
-                        <div class="source-item">[3] https://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&No=502</div>
-                        <div class="source-item">[4] Digital Design and Computer Architecture, RISC-V Edition, Harris S., Harris D., Elsevier Science, 2021</div>
-                        <div class="source-item">[5] https://digilent.com/shop/arty-s7-spartan-7-fpga-development-board/</div>
-                        <div class="source-item">[6] https://www.digikey.de/de/products/detail/lattice-semiconductor-corporation/ICE40HX1K-STICK-EVN/4289604</div>
-                        <div class="source-item">[7] https://wiki.sipeed.com/hardware/en/tang/Tang-Nano-9K/Nano-9K.html</div>
-                        <div class="source-item">[8] The RISC-V Instruction Set Manual Volume I, Version 20250508</div>
-                        <div class="source-item">[9] The RISC-V Debug Specification, Tim Newsome, Paul Donahue, 2025-02-21</div>
-                        <div class="source-item">[10] https://riscv.org/about/</div>
-                        <div class="source-item">[11] https://de.wikipedia.org/wiki/Multiplexer#/media/Datei:Mux-Aufbau_DIN40900.svg</div>
-                            -->
+
+
+                <!---->
+                <!---->
+                <!-- TEIL 5 - Backup Folien -->
+                <!---->
+                <!---->
+
+                <section data-background-color="#00A1E3">
+                    <div>
+                        <h4 style="text-transform: none; width:80%; padding-left: 100px; padding-top: 100px;">
+                            Backup Folien
+                        </h4>
+                        <div style="background: none no-repeat scroll 0 0 #fff;
+                            position: absolute;
+                            right: 0%;
+                            top: 450px;
+                            width: 220px;
+                            border-radius: 15px 0 0 15px;">
+                            <img src="examples\assets\logo-th-ab-logo-only.svg" />
+                        </div>
+                    </div>
+                </section>
+
+                <!---->
+                <section data-background-color="#FFFFFF">
+                    <div style="padding-top:60px; padding-left:60px">
+                        <h5 style="position:absolute; text-align:left; text-transform: none; color:#00A1E3">Komponenten eines denkbaren CPU Designs</h2>
+                        <img style="width:70%; padding-left:0px; padding-top:100px;" src="examples\assets\PipelinedDesign.png" />
+                        <figcaption style="font-size: 0.5em !important;">Abb. ? – Kontrolllogik und Datenpfad (Quelle: [9])</figcaption>
                     </div>
                 </section>
 
