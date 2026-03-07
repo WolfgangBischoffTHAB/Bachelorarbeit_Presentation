@@ -10,11 +10,9 @@ cd js
 git clone https://github.com/hakimel/reveal.js.git
 cd reveal.js && npm install
 
+# Präsentations Server starten
 
 cd C:\Users\lapto\dev\Bachelorarbeit_Presentation
-npm start
-
-cd C:\Users\lapto\dev\js\reveal.js
 npm start
 
 visit http://localhost:8000
