@@ -177,13 +177,13 @@
 
                     <div style="padding-top:60px; padding-left:60px">
                         <div class="container">
-                            <h5 style="text-align:left; text-transform: none; color:#00A1E3">Was ist RISC-V</h5>
+                            <h5 style="text-align:left; text-transform: none; color:#00A1E3">Was ist die RISC-V Instruction Set Architecture (ISA)</h5>
                             <div class="left" style="padding-top: 20px;">
                                 <small>
                                     <ul>
+                                        <li>Anweisungen und deren Wirkungsweiße werden definiert</li>
+                                        <li>Indirekt wird ein Prozessor beschrieben</li>
                                         <li>Kein Produkt sondern lizenzfreie Spezifikation</li>
-                                        <li>RISC-V ist eine Instruction Set Architecture (ISA)</li>
-                                        <li>Verfügbare Anweisungen und deren Wirkungsweiße werden definiert</li>
                                         <li>ISA als Schnittstelle zwischen Hardware und Software</li>
                                     </ul>
                                 </small>
@@ -200,7 +200,7 @@
 
                 <section>
                     <div style="padding-top:60px; padding-left:60px">
-                        <h5 style="text-align:left; text-transform: none; color:#00A1E3">RISC-V - Zeitliche Einordnung</h5>
+                        <h5 style="text-align:left; text-transform: none; color:#00A1E3">RISC-V - Zeitliche Einordnung und Konkurrenz</h5>
                     </div>
                     <div>
                         <figure>
@@ -272,14 +272,15 @@
                     <div style="padding-top:60px; padding-left:120px; padding-right:120px;">
                         <h5 style="text-align:left; text-transform: none; color:#00A1E3">Motivation zur Matrixberechnung</h5>
                         <ul style="font-size: 0.6em !important;">
-                            <li>Matrixberechnungen sind die Grundlage der KI und der Computergrafik</li>
-                            <li>Google erfindet den Transformer (Attention Is All You Need) (2017) [10] und OpenAI veröffentlicht daraufhin Chat-GPT (November 2022). (GPT = Generative Pre-trained Transformer)</li>
-                            <li>LLMs werden flächendeckend eingesetzt. Suchmaschinen, Vibe-Coding, Hausaufgaben, Aufsätze, Zusammenfassung und Berichterstellung.</li>
-                            <li>LLMs erstellen Quellcode. Wird es in Zukunft noch Software-Entwickler geben?</li>
+                            <li><b>Matrixberechnungen</b> sind die Grundlage der <b>KI</b> und der <b>Computergrafik</b></li>
+                            <li>Google erfindet den <b>Transformer</b> (Attention Is All You Need) (2017) [10] und OpenAI veröffentlicht daraufhin Chat-GPT (November 2022). (GPT = Generative Pre-trained <b>Transformer</b>)</li>
+                            <!--<li>LLMs werden flächendeckend eingesetzt. Suchmaschinen, Vibe-Coding, Hausaufgaben, Aufsätze, Zusammenfassung und Berichterstellung.</li>-->
+                            <li>LLMs erstellen Berichte, generieren Bilder und Quellcode.</li>
+                            <li>gWird es in Zukunft noch Software-Entwickler geben?</li>
                             <li>Rechenzentren mit einstelligem Gigawatt Stromverbrauch werden gebaut. Atomkraftwerke werden reaktiviert. [11]</li>
                             <li>RAM und Grafikbeschleuniger sind extrem teuer geworden.</li>
-                            <li>KI-Unterstützung wird von Computertechnik im privaten und im industriellen Umfeld erwartet.</li>
-                            <li>Chips ohne KI-Unterstützung haben einen großen Wettbewerbsnachteil.</li>
+                            <li><b>KI-Unterstützung</b> wird von Computertechnik im privaten und im industriellen Umfeld <b>erwartet</b>.</li>
+                            <li>Chips ohne KI-Unterstützung haben einen großen <b>Wettbewerbsnachteil</b>.</li>
                         </ul>
                     </div>
                 </section>
@@ -457,7 +458,7 @@
                                         <ul>
                                             <li>Mangelnde Cache-Lokalität</li>
                                             <li>Verursacht viele Load- Store-Schritte</li>
-                                            <li>Performance schlecht durch Einzelschritte</li>
+                                            <!--<li>Performance schlecht durch Einzelschritte</li>-->
                                         </ul>
                                     </div>
                                 </small>
@@ -471,7 +472,7 @@
                                         <ul>
                                             <li>Cache-Lokalität durch Mathe-Bibliotheken</li>
                                             <li>Single Instruction Multiple Data (SIMD)</li>
-                                            <li>Single Instruction Multiple Data (SIMD)</li>
+                                            <!--<li>Single Instruction Multiple Data (SIMD)</li>-->
                                         </ul>
                                     </div>
                                 </small>
@@ -563,7 +564,7 @@
                                     </div>
                                     <div>
                                         <ul>
-                                            <li>set(i)vli</li>
+                                            <li>set(i)vli (Konfiguration)</li>
                                             <li>vle32.v (SIMD-Load)</li>
                                             <li>vadd.vv (SIMD-Operation)</li>
                                             <li>vse32.v (SIMD-Store)</li>
@@ -1169,6 +1170,9 @@
                         <div style="display: table-cell; vertical-align: middle;">
                             <div>
                                 <p style="font-size: 2.5em !important;">Vielen Dank für die Aufmerksamkeit.</p>
+                                <p style="font-size: 0.5em !important;">Vielen Dank fürs hier sein!</p>
+                                <p style="font-size: 0.5em !important;">Vielen Dank für die Zeit!</p>
+                                <p style="font-size: 0.5em !important;">Vielen Dank für die Betreuung!</p>
                             </div>
                         </div>
                     </div>
@@ -1184,21 +1188,19 @@
                     <div style="padding-top:60px; padding-left:60px">
                         <h5 style="text-align:left; text-transform: none; color:#00A1E3">Quellenverzeichnis</h2>
                         <div class="source-item">[1] Learn OpenGL Graphics Programming – Joey de Vries, 2020, Kendall&Welling, ISBN 978-90-90-33256-7</div>
-                        <div class="source-item">[2] https://www.gilesthomas.com/2025/02/basic-neural-network-matrix-maths-part-1 (Zugriff: 18.01.2026)</div>
-                        <div class="source-item">[3] https://riscv.atlassian.net/wiki/download/attachments/663781400/DesignConsiderationsForVME.pdf?api=v2  (Zugriff: 09.02.2026)</div>
-                        <div class="source-item">[4] https://colfaxresearch.com/download/711/ (Zugriff: 10.02.2026)</div>
-                        <div class="source-item">[5] https://stnolting.github.io/neorv32/ (Zugriff: 10.02.2026)</div>
-                        <div class="source-item">[6] https://www.digikey.de/short/wjh1v7vr (Zugriff: 14.02.2026)</div>
-                        <div class="source-item">[7] https://stnolting.github.io/neorv32/ug/ (Zugriff: 14.02.2026)</div>
-                        <div class="source-item">[8] https://riscv-europe.org/summit/2025/media/proceedings/2025-05-13-RISC-V-Summit-Europe-11h30-ASANOVI%C4%86-slides.pdf (Zugriff: 14.02.2026)</div>
+                        <div class="source-item">[2] <a href="https://www.gilesthomas.com/2025/02/basic-neural-network-matrix-maths-part-1">https://www.gilesthomas.com/2025/02/basic-neural-network-matrix-maths-part-1</a> (Zugriff: 18.01.2026)</div>
+                        <div class="source-item">[3] <a href="https://riscv.atlassian.net/wiki/download/attachments/663781400/DesignConsiderationsForVME.pdf?api=v2">https://riscv.atlassian.net/wiki/download/attachments/663781400/DesignConsiderationsForVME.pdf?api=v2</a> (Zugriff: 09.02.2026)</div>
+                        <div class="source-item">[4] <a href="https://colfaxresearch.com/download/711/">https://colfaxresearch.com/download/711/</a> (Zugriff: 10.02.2026)</div>
+                        <div class="source-item">[5] <a href="https://stnolting.github.io/neorv32/">https://stnolting.github.io/neorv32/</a> (Zugriff: 10.02.2026)</div>
+                        <div class="source-item">[6] <a href="https://www.digikey.de/short/wjh1v7vr">https://www.digikey.de/short/wjh1v7vr</a> (Zugriff: 14.02.2026)</div>
+                        <div class="source-item">[7] <a href="https://stnolting.github.io/neorv32/ug/">https://stnolting.github.io/neorv32/ug/</a> (Zugriff: 14.02.2026)</div>
+                        <div class="source-item">[8] <a href="https://riscv-europe.org/summit/2025/media/proceedings/2025-05-13-RISC-V-Summit-Europe-11h30-ASANOVI%C4%86-slides.pdf">https://riscv-europe.org/summit/2025/media/proceedings/2025-05-13-RISC-V-Summit-Europe-11h30-ASANOVI%C4%86-slides.pdf</a> (Zugriff: 14.02.2026)</div>
                         <div class="source-item">[9] HARRIS, Sarah L. ; HARRIS, David: Digital Design and Computer Architecture, RISC-V Edition. (2021). ISBN 0128200642, 97801282006430</div>
                         <div class="source-item">[10] Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, Illia Polosukhin DBLP:journals/corr/VaswaniSPUJGKP17 https://arxiv.org/abs/1706.03762v7</div>
-                        <div class="source-item">[11] https://www.zeit.de/wirtschaft/unternehmen/2025-10/google-atomkraftwerk-stromversorgung-rechenzentren-kuenstliche-intelligenz (Zugriff: 16.02.2026)</div>
-                        <div class="source-item">[12] https://eupilot.eu/wp-content/uploads/2022/11/RISC-V-VectorExtension-1-1.pdf (Zugriff: 16.02.2026)</div>
+                        <div class="source-item">[11] <a href="https://www.zeit.de/wirtschaft/unternehmen/2025-10/google-atomkraftwerk-stromversorgung-rechenzentren-kuenstliche-intelligenz">https://www.zeit.de/wirtschaft/unternehmen/2025-10/google-atomkraftwerk-stromversorgung-rechenzentren-kuenstliche-intelligenz</a> (Zugriff: 16.02.2026)</div>
+                        <div class="source-item">[12] <a href="https://eupilot.eu/wp-content/uploads/2022/11/RISC-V-VectorExtension-1-1.pdf">https://eupilot.eu/wp-content/uploads/2022/11/RISC-V-VectorExtension-1-1.pdf</a> (Zugriff: 16.02.2026)</div>
                     </div>
                 </section>
-
-
 
                 <!---->
                 <!---->
